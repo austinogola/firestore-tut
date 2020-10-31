@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Firestore</title>
+</head>
+<body>
+    <h1></h1>
+
+    <ul class="cafeList"></ul>
+
+    <form action="" class="add-cafe-form">
+        <input type="text" name='name' placeholder="Add cafe name">
+        <input type="text" name='city' placeholder="cafe city">
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCkS78Qp0QDEyGhTFdZrqMAgOhxofyOkn8",
+        authDomain: "firestore-tut-48857.firebaseapp.com",
+        databaseURL: "https://firestore-tut-48857.firebaseio.com",
+        projectId: "firestore-tut-48857",
+        storageBucket: "firestore-tut-48857.appspot.com",
+        messagingSenderId: "814397034854",
+        appId: "1:814397034854:web:22ab9ffb1c1007057c38a7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db=firebase.firestore()
+    //snapshots enabling
+    db.settings({timestampsInSnapshots:true})
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
