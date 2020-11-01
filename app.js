@@ -50,3 +50,42 @@ form.addEventListener('submit',e=>{
     form.name.value=''
     form.city.value=''
 })
+
+//Querying data
+db.collection('cafes').where('city','=='/*can also be '>',"<=" etc*/,'Manchester').get().then((snapshot)=>{
+    console.log('Querying If City Is Manchester');
+    snapshot.docs.forEach(doc=>{
+        console.log(doc.data());
+    })
+})
+
+
+//Ordering
+db.collection('cafes').orderBy('name').get().then(snapshot=>{
+    console.log('Ordering By Name');
+    snapshot.docs.forEach(doc=>{
+        console.log(doc.data());
+    })
+})
+
+//REAL TIME DATA/RENDERING
+//onSnaphot==>an event listener on changes made to the database
+db.collection('cafes').orderBy('city').onSnapshot(snapshot=>{
+    let changes=snapshot.docChanges()
+    changes.forEach(change=>{
+        console.log(change.doc.data());
+        if(change.type=='added'){
+            renderCafe(change.doc)
+        }else if(change.type=='removed'){
+            let removedItem=cafeList.querySelector(`[city-id=${change.doc.id}]`)///Debug this
+            cafeList.removeChild(removedItem)
+        }
+    })
+})
+
+
+// //Updating a value
+// db.collection('cafes').doc('id here').update({
+//     name:'New Name',
+//     city:"new city name"
+// })
